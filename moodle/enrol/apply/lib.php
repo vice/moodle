@@ -63,7 +63,13 @@ class enrol_apply_plugin extends enrol_plugin {
 					$timeend = 0;
 				}
 
-				$this->enrol_user($instance, $USER->id, $instance->roleid, $timestart, $timeend,1);
+				$roleid = $instance->roleid;
+				if(!$roleid){
+					$role = $DB->get_record_sql('select * from '.$CFG->prefix.'role where archetype="student" limit 1');
+					$roleid = $role->id;
+				}
+
+				$this->enrol_user($instance, $USER->id, $roleid, $timestart, $timeend,1);
 				add_to_log($instance->courseid, 'course', 'enrol', '../enrol/users.php?id='.$instance->courseid, $instance->courseid); //there should be userid somewhere!
 				redirect("$CFG->wwwroot/course/view.php?id=$instance->courseid");
 			}
