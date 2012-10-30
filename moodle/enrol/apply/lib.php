@@ -172,7 +172,7 @@ function sendCancelMail($info){
 	$body = $apply_setting['cancelmailcontent']->value;
 	$body = updateMailContent($body,$replace);
 	$contact = get_admin();
-	email_to_user($info, $contact, $apply_setting['mailsubject']->value, '', $body);
+	email_to_user($info, $contact, $apply_setting['cancelmailsubject']->value, '', $body);
 }
 
 function sendConfirmMail($info){
@@ -184,7 +184,7 @@ function sendConfirmMail($info){
 	$body = $apply_setting['confirmmailcontent']->value;
 	$body = updateMailContent($body,$replace);
 	$contact = get_admin();
-	email_to_user($info, $contact, $apply_setting['mailsubject']->value, '', $body);
+	email_to_user($info, $contact, $apply_setting['confirmmailsubject']->value, '', $body);
 }
 
 function getRelatedInfo($enrolid){
